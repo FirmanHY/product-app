@@ -8,9 +8,7 @@
 					<div class="col-lg-5 col-md-6 col-12">
 						<!-- Single Widget -->
 						<div class="single-footer about">
-							<div class="logo">
-								<a href="index.html"><img src="" alt="#"></a>
-							</div>
+							
 						
 							<p class="text"></p>
 							<p class="call">Got Question? Call us 24/7<span><a href="tel:123456789"></a></span></p>

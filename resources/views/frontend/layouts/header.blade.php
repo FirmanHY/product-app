@@ -46,7 +46,7 @@
                     <!-- Logo -->
                     <div class="logo">
                                          
-                        <a href="{{route('home')}}"><img src="" alt="logo"></a>
+                        {{-- <a href="{{route('home')}}"><img src="{{asset('backend/img/f-shop.png')}}" alt="logo"></a> --}}
                     </div>
                     <!--/ End Logo -->
                     <!-- Search Form -->
