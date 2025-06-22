@@ -12,19 +12,6 @@ use Session;
 
 class FrontendController extends Controller
 {
-     public function home(){
-        $banners=Banner::where('status','active')->limit(3)->orderBy('id','DESC')->get();
-        $featured=Product::where('status','active')->where('is_featured',1)->orderBy('price','DESC')->limit(2)->get();
-        $products=Product::where('status','active')->orderBy('id','DESC')->limit(8)->get();
-        $category=Category::where('status','active')->where('is_parent',1)->orderBy('title','ASC')->get();
-     
-        return view('frontend.index')
-                ->with('banners',$banners)
-                ->with('featured',$featured)
-                ->with('product_lists',$products)
-                ->with('category_lists',$category);
-     }
-
     public function login(){
         return view('frontend.pages.login');
     }

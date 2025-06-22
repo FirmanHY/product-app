@@ -4,8 +4,9 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\FrontendController;
-use App\Http\Controllers\HomeController;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
@@ -23,7 +24,7 @@ Route::get('/checkout', function () {
         return view('frontend.pages.checkout');
     })->name('checkout');
 
-Route::get('/',[FrontendController::class,'home'])->name('home');
+Route::get('/',[HomeController::class,'index'])->name('home');
 Route::post('/product/search', [FrontendController::class,"productSearch"])->name('product.search');
 Route::get('/cart', function () { return view('frontend.pages.cart');})->name('cart');
 Route::get('product-detail/{slug}', [FrontendController::class,'productDetail'])->name('product-detail');
@@ -48,8 +49,8 @@ Route::group([
      Route::resource('/product', ProductController::class);
 });
 
-    Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
+Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']], function () {
         \UniSharp\LaravelFilemanager\Lfm::routes();
-    });
+});
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
