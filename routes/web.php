@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\FrontendController;
@@ -29,6 +30,7 @@ Route::get('product-detail/{slug}', [FrontendController::class,'productDetail'])
 Route::get('/product-grids', [FrontendController::class,'productGrids'])->name('product-grids');
 Route::get('/product-lists', [FrontendController::class,"productLists"])->name('product-lists');
 Route::get('/product-cat/{slug}', [FrontendController::class,'productCat'])->name('product-cat');
+Route::get('/product-brand/{slug}', 'FrontendController@productBrand')->name('product-brand');
 Route::match(['get', 'post'], '/filter', [FrontendController::class,'productFilter'])->name('shop.filter');
 
 Route::group([
@@ -40,6 +42,7 @@ Route::group([
      Route::get('/file-manager', function () {
         return view('backend.layouts.file-manager');
      })->name('file-manager');
+     Route::resource('banner', BannerController::class);
      Route::resource('brand', BrandController::class);
      Route::resource('/category', CategoryController::class);
      Route::resource('/product', ProductController::class);

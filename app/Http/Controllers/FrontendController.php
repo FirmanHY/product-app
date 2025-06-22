@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
@@ -12,11 +13,13 @@ use Session;
 class FrontendController extends Controller
 {
      public function home(){
+        $banners=Banner::where('status','active')->limit(3)->orderBy('id','DESC')->get();
         $featured=Product::where('status','active')->where('is_featured',1)->orderBy('price','DESC')->limit(2)->get();
         $products=Product::where('status','active')->orderBy('id','DESC')->limit(8)->get();
         $category=Category::where('status','active')->where('is_parent',1)->orderBy('title','ASC')->get();
      
         return view('frontend.index')
+                ->with('banners',$banners)
                 ->with('featured',$featured)
                 ->with('product_lists',$products)
                 ->with('category_lists',$category);
@@ -168,6 +171,57 @@ class FrontendController extends Controller
      public function productDetail($slug){
         $product_detail= Product::getProductBySlug($slug);
         return view('frontend.pages.product_detail')->with('product_detail',$product_detail);
+    }
+
+      public function productGrids(){
+        $products=Product::query();
+        
+        if(!empty($_GET['category'])){
+            $slug=explode(',',$_GET['category']);
+            $cat_ids=Category::select('id')->whereIn('slug',$slug)->pluck('id')->toArray();
+            $products->whereIn('cat_id',$cat_ids);
+        }
+        if(!empty($_GET['brand'])){
+            $slugs=explode(',',$_GET['brand']);
+            $brand_ids=Brand::select('id')->whereIn('slug',$slugs)->pluck('id')->toArray();
+            return $brand_ids;
+        }
+        if(!empty($_GET['sortBy'])){
+            if($_GET['sortBy']=='title'){
+                $products=$products->where('status','active')->orderBy('title','ASC');
+            }
+            if($_GET['sortBy']=='price'){
+                $products=$products->orderBy('price','ASC');
+            }
+        }
+
+        if(!empty($_GET['price'])){
+            $price=explode('-',$_GET['price']);
+            $products->whereBetween('price',$price);
+        }
+
+        $recent_products=Product::where('status','active')->orderBy('id','DESC')->limit(3)->get();
+      
+        if(!empty($_GET['show'])){
+            $products=$products->where('status','active')->paginate($_GET['show']);
+        }
+        else{
+            $products=$products->where('status','active')->paginate(9);
+        }
+    
+        return view('frontend.pages.product-grids')->with('products',$products)->with('recent_products',$recent_products);
+    }
+
+     public function productBrand(Request $request){
+        $products=Brand::getProductByBrand($request->slug);
+        $recent_products=Product::where('status','active')->orderBy('id','DESC')->limit(3)->get();
+        if(request()->is('e-shop.loc/product-grids')){
+            return view('frontend.pages.product-grids')->with('products',$products->products)->with('recent_products',$recent_products);
+        }
+        else{
+            return view('frontend.pages.product-lists')->with('products',$products->products)->with('recent_products',$recent_products);
+        }
+
     }
 
 }
