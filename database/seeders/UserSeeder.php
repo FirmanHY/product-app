@@ -38,7 +38,6 @@ class UserSeeder extends Seeder
             ],
         ];
 
-     
         collect($users)->each(function ($user) {
             User::create($user);
         });

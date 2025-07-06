@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class AdminController extends Controller
 {
-    public function index(){
+    public function index()
+    {
 
-     return view('backend.index');
+        return view('backend.index');
     }
 }

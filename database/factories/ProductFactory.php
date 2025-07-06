@@ -2,9 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Models\Product;
-use App\Models\Category;
 use App\Models\Brand;
+use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -15,12 +15,13 @@ class ProductFactory extends Factory
     public function definition()
     {
         $title = $this->faker->sentence(3);
+
         return [
             'title' => $title,
             'slug' => Str::slug($title),
             'summary' => $this->faker->paragraph,
             'description' => $this->faker->text,
-            'photo' => "",
+            'photo' => '',
             'stock' => $this->faker->numberBetween(1, 100),
             'size' => $this->faker->randomElement(['S', 'M', 'L', 'XL']),
             'condition' => $this->faker->randomElement(['default', 'new', 'hot']),

@@ -14,9 +14,11 @@ class BrandFactory extends Factory
      * @return array<string, mixed>
      */
     protected $model = Brand::class;
+
     public function definition(): array
     {
         $title = $this->faker->unique()->word;
+
         return [
             'title' => $title,
             'slug' => Str::slug($title),

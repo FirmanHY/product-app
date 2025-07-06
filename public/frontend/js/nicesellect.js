@@ -5322,14 +5322,12 @@ var ytp = ytp || {},
                         var a = jQuery.Event('YTPChangeVideo');
                         (a.time = c.currentTime),
                             jQuery(c).trigger(a),
-                            jQuery(c)
-                                .YTPGetPlayer()
-                                .loadVideoById({
-                                    videoId: c.videoID,
-                                    startSeconds: c.opt.startAt,
-                                    endSeconds: c.opt.stopAt,
-                                    suggestedQuality: c.opt.quality,
-                                }),
+                            jQuery(c).YTPGetPlayer().loadVideoById({
+                                videoId: c.videoID,
+                                startSeconds: c.opt.startAt,
+                                endSeconds: c.opt.stopAt,
+                                suggestedQuality: c.opt.quality,
+                            }),
                             jQuery(c).optimizeDisplay(),
                             jQuery.mbYTPlayer.checkForState(c),
                             jQuery.mbYTPlayer.getDataFromAPI(c);

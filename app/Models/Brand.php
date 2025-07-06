@@ -13,12 +13,13 @@ class Brand extends Model
 
     public function products()
     {
-        return $this->hasMany(Product::class)->where('status','active');
+        return $this->hasMany(Product::class)->where('status', 'active');
     }
 
-     public static function getProductByBrand($slug){
-     
-        return Brand::with('products')->where('slug',$slug)->first();
-      
+    public static function getProductByBrand($slug)
+    {
+
+        return Brand::with('products')->where('slug', $slug)->first();
+
     }
 }

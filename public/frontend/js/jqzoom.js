@@ -87,12 +87,10 @@
                         width: _option.thumb_image_width,
                         height: _option.thumb_image_height,
                     });
-                $bzoom_magnifier
-                    .find('div')
-                    .css({
-                        width: _option.thumb_image_width * scalex,
-                        height: _option.thumb_image_height * scaley,
-                    });
+                $bzoom_magnifier.find('div').css({
+                    width: _option.thumb_image_width * scalex,
+                    height: _option.thumb_image_height * scaley,
+                });
             }
 
             // 大图
@@ -236,12 +234,10 @@
             }
 
             _option.zoom_area_height = _option.zoom_area_width / scxy;
-            $bzoom_zoom_area
-                .find('div')
-                .css({
-                    width: _option.zoom_area_width,
-                    height: _option.zoom_area_height,
-                });
+            $bzoom_zoom_area.find('div').css({
+                width: _option.zoom_area_width,
+                height: _option.zoom_area_height,
+            });
 
             $li.add($bzoom_magnifier)
                 .mousemove(function (event) {

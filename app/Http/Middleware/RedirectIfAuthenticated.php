@@ -16,7 +16,8 @@ class RedirectIfAuthenticated
      * @param  string|null  $guard
      * @return mixed
      */
-        public const HOME = '/home';
+    public const HOME = '/home';
+
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {

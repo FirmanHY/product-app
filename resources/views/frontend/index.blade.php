@@ -20,7 +20,7 @@
 
     <x-frontend.home.services-area />
 
-    <x-frontend.home.product-modals :productLists="$productList" />
+    <x-frontend.general.product-modals :productLists="$productList" />
 @endsection
 
 @push('styles')
@@ -75,7 +75,7 @@
     </script>
     <script>
         /*==================================================================
-                                                                                                                                                    [ Isotope ]*/
+                                                                                                                                                            [ Isotope ]*/
         var $topeContainer = $('.isotope-grid');
         var $filter = $('.filter-tope-group');
 

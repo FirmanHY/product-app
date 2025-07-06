@@ -233,7 +233,7 @@
                                 $('#child_cat_div').removeClass(
                                     'd-none');
                                 $.each(data, function(id,
-                                title) {
+                                    title) {
                                     html_option +=
                                         "<option value='" +
                                         id + "'>" +

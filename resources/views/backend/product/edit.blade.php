@@ -140,10 +140,12 @@
                             {{ $product->condition == 'default' ? 'selected' : '' }}>
                             Default</option>
                         <option value="new"
-                            {{ $product->condition == 'new' ? 'selected' : '' }}>New
+                            {{ $product->condition == 'new' ? 'selected' : '' }}>
+                            New
                         </option>
                         <option value="hot"
-                            {{ $product->condition == 'hot' ? 'selected' : '' }}>Hot
+                            {{ $product->condition == 'hot' ? 'selected' : '' }}>
+                            Hot
                         </option>
                     </select>
                 </div>
@@ -261,7 +263,7 @@
                                 $('#child_cat_div').removeClass(
                                     'd-none');
                                 $.each(data, function(id,
-                                title) {
+                                    title) {
                                     html_option +=
                                         "<option value='" +
                                         id + "' " + (
