@@ -1,22 +1,24 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\BannerController;
-use App\Http\Controllers\BrandController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Frontend\AuthController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ProductController as UserProductController;
-use App\Http\Controllers\FrontendController;
-use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Auth::routes(['register' => false]);
 
-Route::get('user/login', [FrontendController::class, 'login'])->name('login.form');
-Route::post('user/login', [FrontendController::class, 'loginSubmit'])->name('login.submit');
-Route::get('user/logout', [FrontendController::class, 'logout'])->name('user.logout');
-Route::get('user/register', [FrontendController::class, 'register'])->name('register.form');
+Route::get('user/login', [AuthController::class, 'login'])->name('login.form');
+Route::post('user/login', [AuthController::class, 'loginSubmit'])->name('login.submit');
+Route::get('user/logout', [AuthController::class, 'logout'])->name('user.logout');
+Route::get('user/register', [AuthController::class, 'register'])->name('register.form');
+Route::post('user/register', [AuthController::class, 'registerSubmit'])->name('register.submit');
+Route::post('password-reset', [AuthController::class, 'showResetForm'])->name('password.reset');
 
 Route::get('/checkout', function () {
     return view('frontend.pages.checkout');

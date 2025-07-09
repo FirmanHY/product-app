@@ -17,7 +17,7 @@
                             <div class="content">
                                 <h3>{{ $cat->title }}</h3>
                                 <a
-                                    href="{{ route('product-cat', $cat->slug) }}">Discover
+                                    href="{{ route('shop.filter', array_merge(request()->query(), ['category' => [$cat->slug], 'view' => request('view', 'grid')])) }}">Discover
                                     Now</a>
                             </div>
                         </div>

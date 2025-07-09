@@ -3,16 +3,19 @@
 @section('title', 'F-SHOP || PRODUCT PAGE')
 
 @section('main-content')
-
     <x-frontend.general.breadcrumbs active="Shop Lists" />
     <form action="{{ route('shop.filter') }}" method="POST">
         @csrf
-        <!-- Product Style 1 -->
+        <input type="hidden" name="category" value="{{ request('category') }}">
+        <input type="hidden" name="brand" value="{{ request('brand') }}">
+
         <section class="product-area shop-sidebar shop-list shop section">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3 col-md-4 col-12">
-                        <x-frontend.product-page.shop-sidebar :recent_products="$recent_products" />
+                        <x-frontend.product-page.shop-sidebar :recent_products="$recent_products"
+                            :menu="$menu" :max_price="$max_price" :brands="$brands"
+                            :current_price_range="$current_price_range" />
                     </div>
                     <div class="col-lg-9 col-md-8 col-12">
                         <div class="row">
@@ -32,21 +35,45 @@
                         </div>
                         <div class="row">
                             <div class="col-md-12 justify-content-center d-flex">
-                                {{ $products->appends($_GET)->links() }}
+                                {{ $products->appends($_GET)->links('vendor.pagination.custom') }}
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!--/ End Product Style 1  -->
     </form>
     <x-frontend.general.product-modals :productLists="$products" />
 @endsection
 @push('styles')
     <style>
         .pagination {
-            display: inline-flex;
+            list-style: none;
+            padding: 0;
+            margin: 0 auto;
+        }
+
+        .pagination .page-item {
+            margin: 0 4px;
+        }
+
+        .pagination .page-link {
+            border: 1px solid #ddd;
+            padding: 6px 12px;
+            color: #333;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .pagination .page-item.active .page-link {
+            background-color: #F7941D;
+            color: white;
+            border-color: #F7941D;
+        }
+
+        .pagination .page-item.disabled .page-link {
+            color: #ccc;
+            cursor: not-allowed;
         }
 
         .filter_button {

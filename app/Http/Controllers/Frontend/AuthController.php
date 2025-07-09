@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Frontend;
 
+use App\Http\Controllers\Controller;
 use Auth;
 use Illuminate\Http\Request;
 use Session;
 
-class FrontendController extends Controller
+class AuthController extends Controller
 {
     public function login()
     {
@@ -40,5 +41,31 @@ class FrontendController extends Controller
     public function register()
     {
         return view('frontend.pages.register');
+    }
+
+    public function showResetForm()
+    {
+        return view('auth.passwords.old-reset');
+    }
+
+    public function registerSubmit(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'string|required|min:2',
+            'email' => 'string|required|unique:users,email',
+            'password' => 'required|min:6|confirmed',
+        ]);
+        $data = $request->all();
+        $check = $this->create($data);
+        Session::put('user', $data['email']);
+        if ($check) {
+            request()->session()->flash('success', 'Successfully registered');
+
+            return redirect()->route('home');
+        } else {
+            request()->session()->flash('error', 'Please try again!');
+
+            return back();
+        }
     }
 }
