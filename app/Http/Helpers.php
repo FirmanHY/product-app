@@ -3,6 +3,7 @@
 use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Shipping;
+use App\Models\Wishlist;
 
 // use Auth;
 class Helper
@@ -117,6 +118,37 @@ class Helper
     public static function shipping()
     {
         return Shipping::orderBy('id', 'DESC')->get();
+    }
+
+    public static function getAllProductFromWishlist($user_id=''){
+        if(Auth::check()){
+            if($user_id=="") $user_id=auth()->user()->id;
+            return Wishlist::with('product')->where('user_id',$user_id)->where('cart_id',null)->get();
+        }
+        else{
+            return 0;
+        }
+    }
+
+    public static function wishlistCount($user_id=''){
+       
+        if(Auth::check()){
+            if($user_id=="") $user_id=auth()->user()->id;
+            return Wishlist::where('user_id',$user_id)->where('cart_id',null)->sum('quantity');
+        }
+        else{
+            return 0;
+        }
+    }
+
+    public static function totalWishlistPrice($user_id=''){
+        if(Auth::check()){
+            if($user_id=="") $user_id=auth()->user()->id;
+            return Wishlist::where('user_id',$user_id)->where('cart_id',null)->sum('amount');
+        }
+        else{
+            return 0;
+        }
     }
 }
 

@@ -27,6 +27,7 @@
                                         @foreach ($photo as $data)
                                             <div class="single-slider">
                                                 <img src="{{ $data }}"
+                                                    style="width: 100%; object-fit: cover;"
                                                     alt="{{ $data }}">
                                             </div>
                                         @endforeach
@@ -136,7 +137,8 @@
                                             <button type="submit"
                                                 class="btn">Add to
                                                 cart</button>
-                                            <a href="" class="btn min"><i
+                                            <a href="{{ route('add-to-wishlist', $product->slug) }}"
+                                                class="btn min"><i
                                                     class="ti-heart"></i></a>
                                         </div>
                                     </form>

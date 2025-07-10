@@ -16,8 +16,6 @@
 
     <x-frontend.home.latest-items :latestProduct="$latestProduct" />
 
-    <x-frontend.home.blog-section />
-
     <x-frontend.general.services-area />
 
     <x-frontend.general.product-modals :productLists="$productList" />
@@ -75,7 +73,7 @@
     </script>
     <script>
         /*==================================================================
-                                                                                                                                                                        [ Isotope ]*/
+                                                                                                                                                                            [ Isotope ]*/
         var $topeContainer = $('.isotope-grid');
         var $filter = $('.filter-tope-group');
 

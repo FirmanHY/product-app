@@ -35,7 +35,8 @@
                                                 <i class="ti-eye"></i><span>Quick
                                                     Shop</span>
                                             </a>
-                                            <a title="Wishlist" href="">
+                                            <a title="Wishlist"
+                                                href="{{ route('add-to-wishlist', $product->slug) }}">
                                                 <i class="ti-heart"></i><span>Add
                                                     to Wishlist</span>
                                             </a>

@@ -15,9 +15,11 @@
                                     alt="#">
                             @endif
                             <div class="content">
-                                <h3>{{ $cat->title }}</h3>
-                                <a
-                                    href="{{ route('shop.filter', array_merge(request()->query(), ['category' => [$cat->slug], 'view' => request('view', 'grid')])) }}">Discover
+                                <h3 class="text-white">{{ $cat->title }}
+                                </h3>
+                                <a class="text-white"
+                                    href="{{ route('shop.filter', array_merge(request()->query(), ['category' => [$cat->slug], 'view' => request('view', 'grid')])) }}">
+                                    Discover
                                     Now</a>
                             </div>
                         </div>

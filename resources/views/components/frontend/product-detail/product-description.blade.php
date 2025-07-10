@@ -59,7 +59,8 @@
             </div>
             <div class="add-to-cart mt-4">
                 <button type="submit" class="btn">Add to cart</button>
-                <a href="" class="btn min"><i class="ti-heart"></i></a>
+                <a href="{{ route('add-to-wishlist', $product->slug) }}"
+                    class="btn min"><i class="ti-heart"></i></a>
             </div>
         </form>
 

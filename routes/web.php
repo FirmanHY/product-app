@@ -17,6 +17,7 @@ use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\PaypalController;
 use App\Http\Controllers\Frontend\ProductController as UserProductController;
 use App\Http\Controllers\Frontend\UserController;
+use App\Http\Controllers\Frontend\WishlistController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -38,8 +39,6 @@ Route::match(['get', 'post'], '/product/search', [UserProductController::class, 
 Route::get('product-detail/{slug}', [UserProductController::class, 'productDetail'])->name('product-detail');
 Route::get('/product-grids', [UserProductController::class, 'productGrids'])->name('product-grids');
 Route::get('/product-lists', [UserProductController::class, 'productLists'])->name('product-lists');
-Route::get('/product-cat/{slug}', [UserProductController::class, 'productCat'])->name('product-cat');
-Route::get('/product-brand/{slug}', [UserProductController::class, 'productBrand'])->name('product-brand');
 Route::match(['get', 'post'], '/filter', [UserProductController::class, 'productFilter'])->name('shop.filter');
 
 Route::post('cart/order', [OrderController::class, 'store'])->name('cart.order');
@@ -51,7 +50,13 @@ Route::post('cart-update', [CartController::class, 'cartUpdate'])->name('cart.up
 
 Route::get('/cart', [CartController::class, 'index'])->name('cart');
 
-Route::get('/income', [CartController::class, 'incomeChart'])->name('product.order.income');
+Route::get('/wishlist', function () {
+    return view('frontend.pages.wishlist');
+})->name('wishlist');
+Route::get('/wishlist/{slug}', [WishlistController::class,'wishlist'])->name('add-to-wishlist')->middleware('user');
+Route::get('wishlist-delete/{id}', [WishlistController::class,'wishlistDelete'])->name('wishlist-delete');
+
+Route::get('/income', [AdminOrderController::class, 'incomeChart'])->name('product.order.income');
 Route::get('order/pdf/{id}', [AdminOrderController::class, 'pdf'])->name('order.pdf');
 
 Route::post('/coupon-store', [UserCouponController::class, 'couponStore'])->name('coupon-store');

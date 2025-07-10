@@ -13,5 +13,5 @@
     <x-frontend.general.sidebar-price-filter :max_price="$max_price"
         :current_price_range="$current_price_range" />
     <x-frontend.general.sidebar-recent-posts :recent_products="$recent_products" />
-    <x-frontend.general.sidebar-brands :brands="$brands" />
+    <x-frontend.general.sidebar-brands :brands="$brands" :viewType="$viewType" />
 </div>

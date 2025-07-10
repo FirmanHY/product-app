@@ -20,7 +20,9 @@
                                 title="Quick View" href="#"><i
                                     class="ti-eye"></i><span>Quick
                                     Shop</span></a>
-                            <a title="Wishlist" href="" class="wishlist"
+                            <a title="Wishlist"
+                                href="{{ route('add-to-wishlist', $product->slug) }}"
+                                class="wishlist"
                                 data-id="{{ $product->id }}"><i
                                     class="ti-heart"></i><span>Add to
                                     Wishlist</span></a>

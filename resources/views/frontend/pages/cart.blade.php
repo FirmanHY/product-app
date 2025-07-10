@@ -26,13 +26,9 @@
             </div>
         </div>
     </div>
-    <!-- End Shopping Cart -->
 
-    <!-- Shop Services -->
     <x-frontend.general.services-area />
 
-    <!-- Newsletter -->
-    {{-- @include('frontend.layouts.newsletter') --}}
 @endsection
 
 @push('styles')
