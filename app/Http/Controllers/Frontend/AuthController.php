@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Auth;
+use Hash;
 use Illuminate\Http\Request;
 use Session;
-use Hash;
 
 class AuthController extends Controller
 {
@@ -71,12 +71,13 @@ class AuthController extends Controller
         }
     }
 
-    public function create(array $data){
+    public function create(array $data)
+    {
         return User::create([
-            'name'=>$data['name'],
-            'email'=>$data['email'],
-            'password'=>Hash::make($data['password']),
-            'status'=>'active'
-            ]);
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+            'status' => 'active',
+        ]);
     }
 }

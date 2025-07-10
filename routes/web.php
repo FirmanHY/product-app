@@ -53,8 +53,8 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart');
 Route::get('/wishlist', function () {
     return view('frontend.pages.wishlist');
 })->name('wishlist');
-Route::get('/wishlist/{slug}', [WishlistController::class,'wishlist'])->name('add-to-wishlist')->middleware('user');
-Route::get('wishlist-delete/{id}', [WishlistController::class,'wishlistDelete'])->name('wishlist-delete');
+Route::get('/wishlist/{slug}', [WishlistController::class, 'wishlist'])->name('add-to-wishlist')->middleware('user');
+Route::get('wishlist-delete/{id}', [WishlistController::class, 'wishlistDelete'])->name('wishlist-delete');
 
 Route::get('/income', [AdminOrderController::class, 'incomeChart'])->name('product.order.income');
 Route::get('order/pdf/{id}', [AdminOrderController::class, 'pdf'])->name('order.pdf');

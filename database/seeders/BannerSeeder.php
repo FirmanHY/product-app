@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use App\Models\Banner;
+use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
 class BannerSeeder extends Seeder
