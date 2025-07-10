@@ -34,7 +34,9 @@ Route::get('/checkout', [OrderController::class, 'checkout'])->middleware('user'
 
 Route::get('/', [HomeController::class, 'home'])->name('homepage');
 Route::get('/home', [HomeController::class, 'index']);
-
+Route::get('/about-us', function () {
+    return view('frontend.pages.about-us'); 
+})->name('about-us');
 Route::match(['get', 'post'], '/product/search', [UserProductController::class, 'productSearch'])->name('product.search');
 Route::get('product-detail/{slug}', [UserProductController::class, 'productDetail'])->name('product-detail');
 Route::get('/product-grids', [UserProductController::class, 'productGrids'])->name('product-grids');

@@ -257,6 +257,11 @@
                                                 <a
                                                     href="{{ route('homepage') }}">Home</a>
                                             </li>
+                                            <li
+                                                class="{{ Request::path() == 'about-us' ? 'active' : '' }}">
+                                                <a
+                                                    href="{{ route('about-us') }}">About
+                                                    Us</a></li>
 
                                             <li
                                                 class="@if (Request::path() == 'product-grids' || Request::path() == 'product-lists') active @endif">
