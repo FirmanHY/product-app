@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
 use Session;
+use Hash;
 
 class AuthController extends Controller
 {
@@ -61,11 +63,20 @@ class AuthController extends Controller
         if ($check) {
             request()->session()->flash('success', 'Successfully registered');
 
-            return redirect()->route('home');
+            return redirect()->route('homepage');
         } else {
             request()->session()->flash('error', 'Please try again!');
 
             return back();
         }
+    }
+
+    public function create(array $data){
+        return User::create([
+            'name'=>$data['name'],
+            'email'=>$data['email'],
+            'password'=>Hash::make($data['password']),
+            'status'=>'active'
+            ]);
     }
 }

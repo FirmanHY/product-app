@@ -41,7 +41,9 @@
                                             </a>
                                         </div>
                                         <div class="product-action-2">
-                                            <a href="">Add to cart</a>
+                                            <a
+                                                href="{{ route('add-to-cart', $product->slug) }}">Add
+                                                to cart</a>
                                         </div>
                                     </div>
                                 </div>

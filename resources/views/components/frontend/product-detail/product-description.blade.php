@@ -28,7 +28,7 @@
     @endif
 
     <div class="product-buy">
-        <form action="" method="POST">
+        <form action="{{ route('single-add-to-cart') }}" method="POST">
             @csrf
             <div class="quantity">
                 <h6>Quantity :</h6>

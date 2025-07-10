@@ -2,6 +2,7 @@
 
 use App\Models\Cart;
 use App\Models\Category;
+use App\Models\Shipping;
 
 // use Auth;
 class Helper
@@ -111,6 +112,11 @@ class Helper
         } else {
             return 0;
         }
+    }
+
+    public static function shipping()
+    {
+        return Shipping::orderBy('id', 'DESC')->get();
     }
 }
 

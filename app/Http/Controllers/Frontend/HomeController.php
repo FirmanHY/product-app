@@ -6,10 +6,16 @@ use App\Http\Controllers\Controller;
 use App\Models\Banner;
 use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
+    {
+        return redirect()->route($request->user()->role);
+    }
+
+    public function home()
     {
         $banners = Banner::active()->latestFirst()->limit(3)->get();
         $featured = Product::where('status', 'active')->where('is_featured', 1)->orderBy('price', 'DESC')->limit(2)->get();

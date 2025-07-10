@@ -8,7 +8,7 @@
 
     <x-frontend.home.small-banner :limitedCategories="$limitedCategories" />
 
-    <x-frontend.home.trending-products :categories="$categoryList" :productLists="$productList" />
+    <x-frontend.home.trending-products :productLists="$productList" />
 
     <x-frontend.home.midium-banner :featured="$featured" />
 
@@ -18,7 +18,7 @@
 
     <x-frontend.home.blog-section />
 
-    <x-frontend.home.services-area />
+    <x-frontend.general.services-area />
 
     <x-frontend.general.product-modals :productLists="$productList" />
 @endsection
@@ -75,7 +75,7 @@
     </script>
     <script>
         /*==================================================================
-                                                                                                                                                            [ Isotope ]*/
+                                                                                                                                                                        [ Isotope ]*/
         var $topeContainer = $('.isotope-grid');
         var $filter = $('.filter-tope-group');
 
@@ -102,18 +102,6 @@
                         columnWidth: '.isotope-item'
                     }
                 });
-            });
-        });
-
-        var isotopeButton = $('.filter-tope-group button');
-
-        $(isotopeButton).each(function() {
-            $(this).on('click', function() {
-                for (var i = 0; i < isotopeButton.length; i++) {
-                    $(isotopeButton[i]).removeClass('how-active1');
-                }
-
-                $(this).addClass('how-active1');
             });
         });
     </script>

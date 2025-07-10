@@ -118,27 +118,38 @@
                                             @php
                                                 $photo = explode(
                                                     ',',
-                                                    $data->product['photo'],
+                                                    $data->product['photo'] ??
+                                                        '',
                                                 );
                                             @endphp
+
                                             <li>
-                                                <a href="{{ route('cart-delete', $data->id) }}"
-                                                    class="remove"
-                                                    title="Remove this item"><i
-                                                        class="fa fa-remove"></i></a>
-                                                <a class="cart-img"
-                                                    href="#"><img
-                                                        src="{{ $photo[0] }}"
-                                                        alt="{{ $photo[0] }}"></a>
-                                                <h4><a href="{{ route('product-detail', $data->product['slug']) }}"
-                                                        target="_blank">{{ $data->product['title'] }}</a>
+                                                @if (!empty($data->id))
+                                                    <a href="{{ route('cart-delete', $data->id) }}"
+                                                        class="remove"
+                                                        title="Remove this item"><i
+                                                            class="fa fa-remove"></i></a>
+                                                @endif
+
+                                                <a class="cart-img" href="#">
+                                                    <img src="{{ $photo[0] ?? '' }}"
+                                                        alt="{{ $photo[0] ?? '' }}">
+                                                </a>
+
+                                                <h4>
+                                                    <a href="{{ route('product-detail', $data->product['slug'] ?? '') }}"
+                                                        target="_blank">{{ $data->product['title'] ?? 'No title' }}</a>
                                                 </h4>
+
                                                 <p class="quantity">
-                                                    {{ $data->quantity }} x - <span
-                                                        class="amount">${{ number_format($data->price, 2) }}</span>
+                                                    {{ $data->quantity ?? 0 }} x -
+                                                    <span class="amount">
+                                                        ${{ number_format($data->price ?? 0, 2) }}
+                                                    </span>
                                                 </p>
                                             </li>
                                         @endforeach
+
                                     </ul>
                                     <div class="bottom">
                                         <div class="total">
@@ -173,8 +184,9 @@
                                             class="nav main-menu menu navbar-nav">
                                             <li
                                                 class="{{ Request::path() == 'home' ? 'active' : '' }}">
+
                                                 <a
-                                                    href="{{ route('home') }}">Home</a>
+                                                    href="{{ route('homepage') }}">Home</a>
                                             </li>
                                             <li><a href="">About Us</a>
                                             </li>

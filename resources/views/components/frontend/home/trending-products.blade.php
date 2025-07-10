@@ -12,18 +12,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="product-info">
-                    <div class="nav-main">
-                        <ul class="nav nav-tabs filter-tope-group" id="myTab"
-                            role="tablist">
-                            <button class="btn" style="background:black"
-                                data-filter="*">All Products</button>
-                            @foreach ($categories as $cat)
-                                <button class="btn"
-                                    style="background:none;color:black;"
-                                    data-filter=".{{ $cat->id }}">{{ $cat->title }}</button>
-                            @endforeach
-                        </ul>
-                    </div>
+
                     <div class="tab-content isotope-grid" id="myTabContent">
                         @foreach ($productLists as $product)
                             <x-frontend.general.product-card-grid

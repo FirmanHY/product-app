@@ -6,7 +6,7 @@
             <div class="col-12">
                 <div class="bread-inner">
                     <ul class="bread-list">
-                        <li><a href="{{ route('home') }}">Home<i
+                        <li><a href="{{ route('homepage') }}">Home<i
                                     class="ti-arrow-right"></i></a></li>
                         <li class="active"><a
                                 href="javascript:void(0);">{{ $active }}</a>

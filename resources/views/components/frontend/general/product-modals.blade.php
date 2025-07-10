@@ -95,8 +95,10 @@
                                             </div>
                                         </div>
                                     @endif
-                                    <form action="" method="POST"
-                                        class="mt-4">
+                                    <form
+                                        action="{{ route('single-add-to-cart') }}"
+                                        method="POST" class="mt-4">
+
                                         @csrf
                                         <div class="quantity">
                                             <!-- Input Order -->

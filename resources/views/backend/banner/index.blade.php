@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', 'E-SHOP || Banner Page')
+@section('title', 'F-SHOP || Banner Page')
 @section('main-content')
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -94,7 +94,8 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <span style="float:right">{{ $banners->links() }}</span>
+                    <span
+                        style="float:right">{{ $banners->links('vendor.pagination.custom') }}</span>
                 @else
                     <h6 class="text-center">No banners found!!! Please create banner
                     </h6>

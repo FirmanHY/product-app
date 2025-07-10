@@ -21,7 +21,8 @@
                                             @php $photo = explode(',', $product->photo); @endphp
                                             <img src="{{ $photo[0] }}"
                                                 alt="{{ $photo[0] }}">
-                                            <a href="" class="buy"><i
+                                            <a href="{{ route('add-to-cart', $product->slug) }}"
+                                                class="buy"><i
                                                     class="fa fa-shopping-bag"></i></a>
                                         </div>
                                     </div>
@@ -29,10 +30,17 @@
                                         class="col-lg-6 col-md-6 col-12 no-padding">
                                         <div class="content">
                                             <h4 class="title"><a
-                                                    href="#">{{ $product->title }}</a>
+                                                    href="{{ route('product-detail', $product->slug) }}">{{ $product->title }}</a>
                                             </h4>
+                                            @php
+                                                $after_discount =
+                                                    $product->price -
+                                                    ($product->price *
+                                                        $product->discount) /
+                                                        100;
+                                            @endphp
                                             <p class="price with-discount">
-                                                ${{ number_format($product->discount, 2) }}
+                                                ${{ number_format($after_discount, 2) }}
                                             </p>
                                         </div>
                                     </div>
