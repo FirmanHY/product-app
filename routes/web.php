@@ -28,7 +28,7 @@ Route::post('user/login', [AuthController::class, 'loginSubmit'])->name('login.s
 Route::get('user/logout', [AuthController::class, 'logout'])->name('user.logout');
 Route::get('user/register', [AuthController::class, 'register'])->name('register.form');
 Route::post('user/register', [AuthController::class, 'registerSubmit'])->name('register.submit');
-Route::post('password-reset', [AuthController::class, 'showResetForm'])->name('password.reset');
+Route::post('password-reset', [AuthController::class, 'showResetForm'])->name('user.password.reset');
 
 Route::get('/checkout', [OrderController::class, 'checkout'])->middleware('user')->name('checkout');
 
