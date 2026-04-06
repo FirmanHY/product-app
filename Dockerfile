@@ -5,9 +5,12 @@ RUN apt-get update && apt-get install -y \
     git curl zip unzip libpng-dev libonig-dev libxml2-dev \
     libpq-dev libzip-dev nodejs npm \
     && docker-php-ext-install pdo pdo_pgsql pgsql mbstring exif pcntl bcmath gd zip \
-    && a2dismod mpm_event mpm_worker 2>/dev/null || true \
-    && a2enmod mpm_prefork rewrite \
-    && apt-get clean && rm -rf /var/lib/apt/lists/*
+    && apt-get clean && rm -rf /var/lib/apt/lists/* \
+    && rm -f /etc/apache2/mods-enabled/mpm_event.conf \
+             /etc/apache2/mods-enabled/mpm_event.load \
+             /etc/apache2/mods-enabled/mpm_worker.conf \
+             /etc/apache2/mods-enabled/mpm_worker.load \
+    && a2enmod mpm_prefork rewrite
 
 # Set document root to Laravel public
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
