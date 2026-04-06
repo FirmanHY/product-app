@@ -62,6 +62,5 @@
         margin-left: 0px;
     }
 
-    /*
 </style>
 @stack('styles')

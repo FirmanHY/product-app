@@ -43,7 +43,7 @@
 
                             @if (Route::has('password.request'))
                                 <a class="lost-pass"
-                                    href="{{ route('password.reset') }}">
+                                    href="{{ route('password.request') }}">
                                     Forgot your password?
                                 </a>
                             @endif

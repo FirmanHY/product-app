@@ -30,6 +30,27 @@
             <!-- End of Main Content -->
             @include('backend.layouts.footer')
 
+    <script>
+        const PLACEHOLDER = '/images/placeholder.svg';
+
+        function fixImg(img) {
+            if (!img.src || img.src === window.location.href || img.getAttribute('src') === '') {
+                img.src = PLACEHOLDER;
+            }
+        }
+
+        document.addEventListener('error', function(e) {
+            if (e.target.tagName === 'IMG') {
+                e.target.onerror = null;
+                e.target.src = PLACEHOLDER;
+            }
+        }, true);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('img').forEach(fixImg);
+        });
+    </script>
+
 </body>
 
 </html>
